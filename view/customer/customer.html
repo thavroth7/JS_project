@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- <script defer src="customer.js"></script> -->
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <ul>
+                <a href="../../index.html"><img src="../../images/logo.png"></a>
+            </ul>
+        </div>
+        <div class="nav-center">
+            <form action="" id="search-product">
+                <input type="text" placeholder="Search product..." />
+                <button><i class="material-icons">search</i></button>
+              </form>
+
+        </div>
+        <div id="nav-right">
+            <ul>
+                <a href=""><i class="fa fa-user-circle" aria-hidden="true"></i></a>
+                <a href=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+            </ul>
+           
+        </div>
+    </nav>
+    <div id="container">
+        <div id="sidebar-left">
+            <div id="choose-item">
+                <form action="#">
+                    <select name="product-type" id="product-type">
+                        <option value="All Product" class="item" disabled selected>All Product</option>
+                        <option value="Lightstick">Lightstick</option>
+                        <option value="ALBUMS & DVD'S">ALBUMS & DVD'S</option>
+                        <option value="Photo Cards">Photo Cards</option>
+                        <option value=" Sticker"> Sticker</option>
+                        <option value=" Clothing"> Clothing</option>
+                        <option value=" Bags"> Bags</option>
+                        <option value="BT21"> BT21</option>
+                        <option value="Photo book"> Photo book</option>
+                        <option value="Pre-Order">Pre-Order</option>
+                      </select>
+                </form>
+            </div>
+            <div id="rating">
+                <span class="item">Rating</span>
+                <div id="ratingAverage">
+                    <i class="material-icons">star</i></a>
+                    <i class="material-icons">star</i></a>
+                   <i class="material-icons">star</i></a>
+                  <i class="material-icons">star</i></a>
+                   <i class="material-icons">star</i></a>
+                    <span>& Up</span>
+                </div>
+                <div id="ratingAverage">
+                   <i class="material-icons">star</i></a>
+                    <i class="material-icons">star</i></a>
+                  <i class="material-icons">star</i></a>
+                   <i class="material-icons">star</i></a>
+                   <i class="material-icons">star_border</i></a>
+                    <span>& Up</span>
+                </div>
+                <div id="ratingAverage">
+                    <i class="material-icons">star</i></a>
+                    <i class="material-icons">star</i></a>
+                   <i class="material-icons">star</i></a>
+                   <i class="material-icons">star_border</i></a>
+                   <i class="material-icons">star_border</i></a>
+                    <span>& Up</span>
+                </div>
+                <div id="ratingAverage">
+                    <i class="material-icons">star</i>
+                    <i class="material-icons">star</i></a>
+                   <i class="material-icons">star_border</i></a>
+                    <i class="material-icons">star_border</i></a>
+                    <i class="material-icons">star_border</i></a>
+                    <span>& Up</span>
+                </div>
+                <div id="ratingAverage">
+                    <i class="material-icons">star</i></a>
+                    <i class="material-icons">star_border</i></a>
+                    <i class="material-icons">star_border</i></a>
+                    <i class="material-icons">star_border</i></a>
+                   <i class="material-icons">star_border</i></a>
+                    <span>& Up</span>
+                </div>
+
+            </div>
+            <div id="price-range">
+                <span class="item">Price Range</span>
+                <div id="add-price">
+                    <input type="text" placeholder="$Min">
+                    <input type="text" placeholder="$Max">
+                    <button id="btn-price">Add</button>
+                </div>
+
+            </div>
+            <div id="brands">
+                <span class="item">Brands</span>
+                <div id="choose-brands">
+                    <div id="radio">
+                        <input type="radio" name="brand-select">
+                        <span>BTS</span>
+                    </div>
+                    <div id="radio">
+                        <input type="radio" name="brand-select">
+                        <span>TXT</span>
+
+                    </div>
+                    <div id="radio">
+                        <input type="radio" name="brand-select">
+                        <span>BLACKPINK</span>
+
+                    </div>
+                    <div id="radio">
+                        <input type="radio" name="brand-select">
+                        <span>TWICE</span>
+
+                    </div>
+                    <div id="radio">
+                        <input type="radio" name="brand-select">
+                        <span>EXO</span>
+
+                    </div>
+                    <div id="radio">
+                        <input type="radio" name="brand-select">
+                        <span>STAY KIDS</span>
+
+                    </div>
+                    <div id="radio">
+                        <input type="radio" name="brand-select">
+                        <span>ENHYPEN</span>
+
+                    </div>
+                    <div id="radio">
+                        <input type="radio" name="brand-select">
+                        <span>ITZY</span>
+
+                    </div>
+                    <div id="radio">
+                        <input type="radio" name="brand-select">
+                        <span>MONSTA X</span>
+
+                    </div>
+                    <div id="radio">
+                        <input type="radio" name="brand-select">
+                        <span>SEVENTEEN</span>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div id="store-product">
+            <div id="sort-bar">
+                <div id="sort">
+                    <span>Sort by:</span>
+                    <button>New arrivals</button>
+                    <button>Relevant</button>
+                    <button>Latest </button>
+                    <button>Top Sell</button>
+                    <button>Discount</button>
+                    <button>Instock</button>
+                    <form action="#">
+                        <select name="sort-item" id="sort-item">
+                            <option value="Price" class="item" disabled selected>Price</option>
+                            <option value="Price: Low to Hight">Price: Low to Hight</option>
+                            <option value="Price: Hight to Low">Price: Hight to Low</option>
+
+                        </select>
+                    </form>
+                    
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    <div id="footer">
+        <div class="footer">
+            <div class="information">
+                <div class="title">About Us</div>
+                <span>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Culpa inventore tempore rem veritatis commodi? Tempora atque consequuntur, numquam consectetur harum exercitationem, illum laborum excepturi natus cum maxime, reiciendis recusandae! Velit?</span>
+            </div>
+            <div class="information">
+                <div class="title">Contact Us</div>
+                <span><i class="fa fa-phone-square" aria-hidden="true"> Phone Number:</i>
+    
+                        +855 81 697 501
+                        </span>
+                <span><i class="fa fa-telegram" aria-hidden="true"> Telegram:</i>
+                        +855 81 697 501
+                        </span>
+                <span><i class="fa fa-envelope-o" aria-hidden="true"> Email:</i>
+                            Kpop.Exchange@gmail.com
+                            </span>
+                <span><i class="fa fa-map-marker" aria-hidden="true"> Location</i>
+        
+                                </span>
+              
+            </div>
+            <div class="information">
+                <div class="title">Follow Us</div>
+                <span><i class="fa fa-facebook-square" aria-hidden="true"> Facebook</i>
+    
+                      
+                        </span>
+                <span><i class="fa fa-instagram" aria-hidden="true"> Instagram</i>
+                       
+                        </span>
+                <span><i class="fa fa-youtube-play" aria-hidden="true"> YouTube</i>
+                           
+                            </span>
+              
+              
+            </div>
+            <div class="information">
+                <div class="title">Download app for FREE
+                </div>
+                <div class="text">
+                    <i class="fa fa-qrcode" aria-hidden="true"></i>
+                    <img src="../../images/google play.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <a href="../../index.html"><img src="../../images/logo.png"></a>
+
+    </div>
+
+</body>
+</html>
