@@ -394,18 +394,19 @@ table{
     margin-top: 10px;
     border-collapse: collapse;
     border: var(--main-color) 1px solid;
+    font-size: 20px;
     
 }
 #add-product .images img{
     width: 100px;
 }
 th,tr,td{
-    border: #86008b 1px solid;
+    border: #86008b 3px solid;
 }
 .actions{
     border: none;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     cursor: pointer;
     margin-top: 30px;
    
@@ -426,6 +427,8 @@ td{
 #questions-view{
     margin-left: 100px;
 }
-
+#edit-view{
+    margin-bottom: 50px;
+}
 
 

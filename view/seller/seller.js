@@ -57,7 +57,10 @@ let products=[{
 }
 
 ];
-
+let btnEdit = document.querySelector("#create")
+let productIpt = document.querySelector("#choiceA")
+let priceIpt = document.querySelector("#choiceB")
+let imgIpt = document.querySelector("#choiceC")
 // Hide a given element
 function hide(element) {
   element.style.display = "none";
@@ -126,7 +129,7 @@ function createProduct(){
     let editAction = document.createElement("img");
 
     editAction.src = "../../images/edit.svg";
-    // editAction.addEventListener("click", editQuestion);
+    editAction.addEventListener("click", editQuestion);
    
     actions.appendChild(editAction);
 
@@ -141,6 +144,26 @@ function createProduct(){
 
 }
 };
+function editQuestion(event) {
+  let index = event.target.parentElement.parentElement.dataset.index;
+  let product=products[index];
+  //TODO update the new dialog//
+  
+  document.querySelector("#choiceA").value=product.name;
+  document.querySelector("#choiceB").value=product.price;
+  document.querySelector("#choiceC").value=product.img;
+  
+  //TO SHOW DIALOG
+  show(dom_questions_dialog);
+  products.splice(index,1)
+  btnEdit.textContent = "Edit"
+
+};
+function clearInt(){
+  priceIpt.value ="";
+  productIpt.value = "";
+  imgIpt.value = ""
+}
 function removeQuestion(event) {
   //  Get index
   let index = event.target.parentElement.parentElement.dataset.index;
@@ -156,6 +179,8 @@ function removeQuestion(event) {
 function onAddQuestion() {
   // TODO : when clicking on ADD button, display the dialog
   show(dom_questions_dialog)
+  clearInt()
+  btnEdit.textContent = "Create"
 }
 
 function onCancel(e) {
@@ -164,25 +189,22 @@ function onCancel(e) {
 }
 
 function onCreate() {
- 
   // TODO : when clicking on CREATE button :
- 
+  
   // 1- Hide the dialog
   hide(dom_questions_dialog);
+  let newProducts ={};
+  newProducts.name= dom_questions_dialog.querySelector("#choiceA").value;
+  newProducts.price= dom_questions_dialog.querySelector("#choiceB").value;
+  newProducts.img= dom_questions_dialog.querySelector("#choiceC").value;
+  clearInt()
+ 
+  // // 3- Update the list of question, save question on local sotrage, update the view
+  products.push(newProducts);
+  saveQuestions();
+  createProduct();
 }
-  // // 2- Create a new question with the dialog form values
-//   let newQuestion ={};
-//   newQuestion.title= dom_questions_dialog.querySelector("#title").value;
-//   newQuestion.choiceA= dom_questions_dialog.querySelector("#choiceA").value;
-//   newQuestion.choiceB= dom_questions_dialog.querySelector("#choiceB").value;
-//   // newQuestion.choiceC= dom_questions_dialog.querySelector("#choiceC").value;
-//   // newQuestion.choiceD= dom_questions_dialog.querySelector("#choiceD").value;
 
-//   // // 3- Update the list of question, save question on local sotrage, update the view
-//   products.push(newQuestion);
-//   saveQuestions();
-//   renderQuestions();
-// }
 
 // MAIN  ---------------------------------------------------------
 
