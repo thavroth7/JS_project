@@ -7,52 +7,61 @@ const dom_questions_view=document.querySelector("#questions-view")
 let products=[{
   "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/product-image-1467786798_360x.jpg?v=1596432994",
   "name":"BTS lightstick",
-  "price":"50$",
+  "price":"50",
+  "currency":"$"
 
 },
 {
   "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/ateez-world-tour-the-fellowship-break-the-wall-official-light-stick-ver2-body-accessory_abd4cc84-4428-43fa-826d-ccd829b2b6f2_360x.jpg?v=1666379063",
   "name":"BTS lightstick",
-  "price":"50$",
+  "price":"50",
+  "currency":"$"
 
 },
 {
   "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/ateez-world-tour-the-fellowship-break-the-wall-official-light-stick-ver2-body-accessory_abd4cc84-4428-43fa-826d-ccd829b2b6f2_360x.jpg?v=1666379063",
   "name":"BTS lightstick",
-  "price":"50$",
+  "price":"50",
+  "currency":"$"
 
 },
 {
   "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/KpopExchangeSeventeenLightstick_360x.jpg?v=1624751276",
   "name":"BTS lightstick",
-  "price":"50$",
+  "price":"50",
+  "currency":"$"
 
 },
 {
   "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/KpopExchangeMonstaXOfficialLightstick_360x.png?v=1625105017",
   "name":"BTS lightstick",
   "price":"50$",
+  "currency":"$"
 
 },
 {
   "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/pr-yg-select-md-blackpink-official-light-stick-ver-2-renewal-edition-30385549606992_2000x_792cb0f9-24b7-43ea-8bda-db2c0ff5f0de_360x.jpg?v=1665807770",
   "name":"BTS lightstick",
-  "price":"50$",
+  "price":"50",
+  "currency":"$"
 
 },{
   "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/ENHYPENOfficialLightStickKpopExchange_360x.jpg?v=1624761919",
   "name":"BTS lightstick",
-  "price":"50$",
+  "price":"50",
+  "currency":"$"
 
 },{
   "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/kpop-exchange-pre-order-loona-official-light-stick-15681234927696_908x_b9b55f67-5e95-4f2c-b770-f266dda7dd64_360x.png?v=1620254566",
   "name":"BTS lightstick",
-  "price":"50$",
+  "price":"50",
+  "currency":"$"
 
 },{
   "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/ateez-world-tour-the-fellowship-break-the-wall-official-light-stick-ver2-body-accessory_abd4cc84-4428-43fa-826d-ccd829b2b6f2_360x.jpg?v=1666379063",
   "name":"BTS lightstick",
-  "price":"50$",
+  "price":"50",
+  "currency":"$"
 
 }
 
@@ -105,22 +114,24 @@ function createProduct(){
     nameProduct.textContent=product.name
     addProduct.appendChild(nameProduct)
    
+    let imageProduct = document.createElement('td');
+    imageProduct.className="images"
+    imageProduct.src=product.img
+
+    addProduct.appendChild(imageProduct)
+    let imgProduct=document.createElement('img')
+    imgProduct.src=product.img
+    imageProduct.appendChild(imgProduct)
 
     let priceProduct = document.createElement('td');
     priceProduct.className="span"
     priceProduct.textContent=product.price
     addProduct.appendChild(priceProduct)
 
-    let imageProduct = document.createElement('td');
-    imageProduct.className="images"
-    imageProduct.src=product.img
-    addProduct.appendChild(imageProduct)
-
-    let imgProduct=document.createElement('img')
-    imgProduct.src=product.img
-    imageProduct.appendChild(imgProduct)
-
-   
+    let Currency=document.createElement('td')
+    Currency.className="span"
+    Currency.textContent=product.currency
+    addProduct.appendChild(Currency)
 
     let actions = document.createElement('td');
     actions.className = "actions";
@@ -150,8 +161,9 @@ function editQuestion(event) {
   //TODO update the new dialog//
   
   document.querySelector("#choiceA").value=product.name;
-  document.querySelector("#choiceB").value=product.price;
-  document.querySelector("#choiceC").value=product.img;
+  document.querySelector("#choiceB").value=product.img;
+  document.querySelector("#choiceC").value=product.price;
+  document.querySelector("#choiceD").value=product.currency;
   
   //TO SHOW DIALOG
   show(dom_questions_dialog);
@@ -162,7 +174,8 @@ function editQuestion(event) {
 function clearInt(){
   priceIpt.value ="";
   productIpt.value = "";
-  imgIpt.value = ""
+  imgIpt.value = "";
+  currencyIpt.value = "";
 }
 function removeQuestion(event) {
   //  Get index
@@ -189,14 +202,15 @@ function onCancel(e) {
 }
 
 function onCreate() {
-  // TODO : when clicking on CREATE button :
-  
+ 
   // 1- Hide the dialog
   hide(dom_questions_dialog);
+
   let newProducts ={};
   newProducts.name= dom_questions_dialog.querySelector("#choiceA").value;
-  newProducts.price= dom_questions_dialog.querySelector("#choiceB").value;
-  newProducts.img= dom_questions_dialog.querySelector("#choiceC").value;
+  newProducts.img= dom_questions_dialog.querySelector("#choiceB").value;
+  newProducts.price= dom_questions_dialog.querySelector("#choiceC").value;
+  newProducts.currency= dom_questions_dialog.querySelector("#choiceD").value;
   clearInt()
  
   // // 3- Update the list of question, save question on local sotrage, update the view
@@ -204,11 +218,10 @@ function onCreate() {
   saveQuestions();
   createProduct();
 }
-
-
 // MAIN  ---------------------------------------------------------
 
 // saveQuestions();
+
 createProduct();
 
 let questioButton=dom_questions_view.querySelector("button")

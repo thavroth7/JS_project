@@ -205,7 +205,7 @@ nav #nav-right{
     
 }
 #add-price input, #btn-price{
-    width: 15%;
+    width: 16%;
     margin: 5px;
     border: 3px solid var(--main-color);
     border-radius: 3px;
@@ -382,10 +382,11 @@ nav #nav-right{
     background-color: var(--main-color-light);
     padding: 5px;
     border-radius: 5px;
+    justify-content: space-between;
     
 }
 #play-view .card img{
-    width: 218px;
+    width: 215px;
     border-radius: 5px;
 }
 
@@ -430,5 +431,31 @@ td{
 #edit-view{
     margin-bottom: 50px;
 }
+.cart-item{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-top: 5px;
+  
+}
+.cart-item button{
+    padding: 5px;
+    border: none;
+    background-color: var(--white-color);
+}
 
 
+
+.card-footer{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.name, .price span{
+    font-size: 18px;
+    font-weight: bold;
+}
+.card-footer .material-icons{
+    color: gold;
+}
