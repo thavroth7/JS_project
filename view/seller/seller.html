@@ -1,13 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
     <title>seller</title>
     <link rel="stylesheet" href="../../css/main.css">
-</head>
-<body>
-    
-</body>
+    <script defer src="seller.js"></script>
+  </head>
+  <body>
+    <nav>
+        <div class="nav-left">
+            <ul>
+                <a href="../../index.html"><img src="../../images/logo.png"></a>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <ul class="actions">
+                <li><a href="seller.html">Seller</a></li>
+                <li>|</li>
+                <li><a href="../customer/customer.html">Customer</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div id="questions-dialog" style="display: none">
+      <dialog open>
+        <header>Add Product</header>
+        <menu>
+          <button>Cancel</button>
+          <button>Create</button>
+        </menu>
+      </dialog>
+    </div>
+
+    <div id="edit-view">
+      <div id="questions-view">
+        <button>Add Product</button>
+        <table id="product-view">
+          <thead>
+            <tr>
+              <th>Name of product</th>
+              <th>Price</th>
+              <th>Product image</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="add-product">
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
 </html>

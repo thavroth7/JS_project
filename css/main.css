@@ -1,16 +1,19 @@
 :root {
     --main-color: #86008b;
-    --main-color-light: rgb(254, 123, 241);
+    --main-color-light: rgb(247, 144, 236);
     --white-color: #ffffff;
   }
   
   /* --------------- COMMON STYLE   ------------------------------------   */
-  body {
+body {
     padding: 0;
     margin: 0;
     font-size: 15px;
     font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
     box-sizing: border-box;
+    
   }
 nav{
     display: flex;
@@ -65,7 +68,7 @@ ul li:hover {
     color:var(--white-color);
 }
 #welcome{
-    height: 70vh;
+   
     background-color: var(--main-color);
     display: flex;
     align-items: center;
@@ -134,7 +137,7 @@ nav #nav-right{
     
 }
 .nav-center #search-product{
-    flex: 2;
+    flex: 3;
     display: flex;
     justify-content: space-between;
     border: 5px solid var(--main-color);
@@ -143,16 +146,21 @@ nav #nav-right{
 
 #container{
     display: flex;
-    background-color: antiquewhite;
+    margin-bottom: 20px;
+    
 }
 #sidebar-left{
-    flex: 0.65;
-    background-color: aqua;
+    flex: 0.6;
+    background-color: var(--main-color-light);
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 90vh;
+    justify-content: center;
     justify-content: space-around;
+    margin-left: 70px;
+    margin-right: 5px;
+ 
     
 }
 #sidebar-left .item{
@@ -160,11 +168,11 @@ nav #nav-right{
     font-weight: bold;
 }
 #store-product{
-    flex: 2;
-    background-color: var(--main-color-light);
-    margin-right: 90px;
-    margin-left: 40px;
-    height: 100vh;
+    flex: 2.1;
+    background-color:var(--main-color);
+    margin-right: 40px;
+
+    
 }
 #ratingAverage{
     display: flex;
@@ -192,7 +200,7 @@ nav #nav-right{
 #add-price{
     display: flex;
     justify-content: center;
-    margin-left: 20px;
+    margin-left: 10px;
   
     
 }
@@ -242,14 +250,18 @@ nav #nav-right{
    background-color:var(--white-color);
    border-radius: 3px;
     flex: 2;
-    margin: 5px;
+    margin: 15px;
   
 }
+#footer{
+    background-color: var(--main-color-light);
+   
+}
+
 .footer{
     display: flex;
     justify-content: space-around;
-    height: 30vh;
-    margin-left: 40px;
+    margin-left: 30px;
 
 }
 .information{
@@ -257,6 +269,7 @@ nav #nav-right{
     display: flex;
     flex-direction: column;
     margin-top: 10px;
+    margin-left: 30px;
    
     
 }
@@ -280,6 +293,138 @@ nav #nav-right{
 }
 .text img{
     width: 120px;
+}
+/* --------------- EDIT VIEW STYLE   ---------------   */
+
+
+  
+
+/* ----------------------------- DIALOG   --------------------------   */
+
+#questions-dialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.75);
+    z-index: 10;
+  }
+  
+  dialog {
+    position: fixed;
+    top: 10vh;
+    left: 20%;
+    width: 60%;
+    z-index: 100;
+    border-radius: 12px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  dialog header {
+    background-color: var(--main-color);
+    color: white;
+    font-size: 1.25rem;
+    width: 100%;
+    padding: 1rem;
+  }
+  
+  dialog section {
+    padding: 1rem;
+  }
+  
+  dialog menu {
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+  }
+  
+  dialog label {
+    font-weight: bold;
+    display: block;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  section input {
+    display: block;
+    width: 100%;
+    border: 1px solid #ccc;
+    font-size: 1.1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  section input:focus {
+    background-color: #f0e6fd;
+    outline: none;
+    border-color: var(--main-color-light);
+  }
+
+#play-view{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 10px;
+
+    
+  
+  }
+#play-view .card{
+    display: flex;
+    width: 22.7%;
+    margin: 5px;
+    flex-direction: column;
+    background-color: var(--main-color-light);
+    padding: 5px;
+    border-radius: 5px;
+    
+}
+#play-view .card img{
+    width: 218px;
+    border-radius: 5px;
+}
+
+table{
+    width: 90%;
+    margin-top: 10px;
+    border-collapse: collapse;
+    border: var(--main-color) 1px solid;
+    
+}
+#add-product .images img{
+    width: 100px;
+}
+th,tr,td{
+    border: #86008b 1px solid;
+}
+.actions{
+    border: none;
+    display: flex;
+    justify-content: space-around;
+    cursor: pointer;
+    margin-top: 30px;
+   
+   
+}
+.actions img{
+    width: 40px;
+    
+}
+th{
+    width: 20%;
+    padding: 10px;
+    font-weight: bold;
+}
+td{
+    text-align: center;
+}
+#questions-view{
+    margin-left: 100px;
 }
 
 
