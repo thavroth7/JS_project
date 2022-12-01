@@ -14,7 +14,7 @@
     <nav>
         <div class="nav-left">
             <ul>
-                <a href="../../index.html"><img src="../../images/logo.png"></a>
+                <a href="customer.html"><img src="../../images/logo.png"></a>
             </ul>
         </div>
         <div class="nav-center">
@@ -32,6 +32,59 @@
            
         </div>
     </nav>
+    <div id="product-dialog" style="display: none">
+        <dialog open>
+            <header>Product Detail</header>
+            <div id="dialog-box">
+                <div id="picture">
+                    <img alt="">
+                </div>
+                <div id="product-name">
+                    <span></span>
+                    <div id="ratingAverage">
+                        <i class="material-icons">star_border</i></a>
+                        <i class="material-icons">star_border</i></a>
+                        <i class="material-icons">star_border</i></a>
+                        <i class="material-icons">star_border</i></a>
+                        <i class="material-icons">star_border</i></a>
+                    </div>
+                    <div id="price">
+                            <div id="number">Price: <span></span></div>
+                            <div id="currency"><span></span></div>
+                    </div>
+                    <div id="description">Description: 
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <menu>
+                <button id="cancel-cart">Cancel</button>
+                <button id="add-cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i>Add to cart</button>
+            </menu>
+        </dialog>
+    </div>
+    <div id="product-cart" style="display: none">
+        <dialog open>
+          <header>Add cart</header>
+          <div id="dialog-box">
+          </div>
+          <menu>
+            <button id="cancel">Cancel</button>
+            <button id="buy">Buy Now</button>
+          </menu>
+        </dialog>
+    </div>
+    <div id="buy-product" style="display: none">
+        <dialog open>
+            <header>Buy product</header>
+            <div id="dialog-box">
+            </div>
+            <menu>
+                <button id="cancel-buy">Cancel</button>
+                <button id="submit-buy">Submit buying</button>
+            </menu>
+        </dialog>
+    </div>
     <div id="container">
         <div id="sidebar-left">
             <div id="choose-item">
@@ -229,7 +282,7 @@
                     </div>
                 </div>
             </div>
-            <a href="../../index.html"><img src="../../images/logo.png"></a>
+            <a href="customer.html"><img src="../../images/logo.png"></a>
 
         </div>  
     </div>

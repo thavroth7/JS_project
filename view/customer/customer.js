@@ -1,67 +1,44 @@
+// DOMS ELEMENTS  -------------------------------------------------------
+const dom_view_product=document.querySelector("#product-dialog");
+const dom_container=document.querySelector("#container");
+
+const dom_product_cart=document.querySelector("#product-cart");
+const dom_buy_product=document.querySelector("#buy-product");
+
+// DATA  ---------------------------------------------------------
 let products=[{
   "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/product-image-1467786798_360x.jpg?v=1596432994",
   "name":"BTS lightstick",
   "price":"50",
-  "currency":"$"
+  "currency":"$",
+  "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. "
 
 },
 {
-  "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/ateez-world-tour-the-fellowship-break-the-wall-official-light-stick-ver2-body-accessory_abd4cc84-4428-43fa-826d-ccd829b2b6f2_360x.jpg?v=1666379063",
+  "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/product-image-1467786798_360x.jpg?v=1596432994",
   "name":"BTS lightstick",
   "price":"50",
-  "currency":"$"
+  "currency":"$",
+  "description":"It’s not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. "
 
 },
 {
-  "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/ateez-world-tour-the-fellowship-break-the-wall-official-light-stick-ver2-body-accessory_abd4cc84-4428-43fa-826d-ccd829b2b6f2_360x.jpg?v=1666379063",
+  "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/product-image-1467786798_360x.jpg?v=1596432994",
   "name":"BTS lightstick",
   "price":"50",
-  "currency":"$"
-
-},
-{
-  "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/KpopExchangeSeventeenLightstick_360x.jpg?v=1624751276",
-  "name":"BTS lightstick",
-  "price":"50",
-  "currency":"$"
-
-},
-{
-  "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/KpopExchangeMonstaXOfficialLightstick_360x.png?v=1625105017",
-  "name":"BTS lightstick",
-  "price":"50$",
-  "currency":"$"
-
-},
-{
-  "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/pr-yg-select-md-blackpink-official-light-stick-ver-2-renewal-edition-30385549606992_2000x_792cb0f9-24b7-43ea-8bda-db2c0ff5f0de_360x.jpg?v=1665807770",
-  "name":"BTS lightstick",
-  "price":"50",
-  "currency":"$"
-
-},{
-  "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/ENHYPENOfficialLightStickKpopExchange_360x.jpg?v=1624761919",
-  "name":"BTS lightstick",
-  "price":"50",
-  "currency":"$"
-
-},{
-  "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/kpop-exchange-pre-order-loona-official-light-stick-15681234927696_908x_b9b55f67-5e95-4f2c-b770-f266dda7dd64_360x.png?v=1620254566",
-  "name":"BTS lightstick",
-  "price":"50",
-  "currency":"$"
-
-},{
-  "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/ateez-world-tour-the-fellowship-break-the-wall-official-light-stick-ver2-body-accessory_abd4cc84-4428-43fa-826d-ccd829b2b6f2_360x.jpg?v=1666379063",
-  "name":"BTS lightstick",
-  "price":"50",
-  "currency":"$"
+  "currency":"$",
+  "description":"It’s not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. "
 
 }
-
 ];
 // FUNCTIONS ---------------------------------------------------------
+function hide(element) {
+  element.style.display = "none";
+}
 
+function show(element) {
+  element.style.display = "block";
+}
 // Save questions to local storage
 function saveQuestions() {
   localStorage.setItem("products", JSON.stringify(products));
@@ -77,10 +54,14 @@ function loadQuestions() {
 function createProduct(){
   loadQuestions()
   let productContainer=document.querySelector("#play-view");
-  for(let product of products){
+  for (let index = 0; index < products.length; index++){
+    let product = products[index];
     let card=document.createElement("div")
     card.className="card";
+    card.dataset.index=index
     productContainer.appendChild(card)
+    console.log(index)
+    
 
     let img=document.createElement("img")
     img.src=product.img
@@ -134,17 +115,17 @@ function createProduct(){
     
 
     let productDetail=document.createElement("button")
-   
-    let a =document.createElement("a")
-    a.href="../product/product.html"
-    a.textContent="View"
-    productDetail.appendChild(a)
+    productDetail.className="view-button"
+    productDetail.textContent="View";
+    productDetail.addEventListener("click",onViewProduct)
 
-    let btnCart=document.createElement("button")
-    btnCart.textContent="Add to cart"
- 
+   
   
 
+    let btnCart=document.createElement("button")
+    btnCart.className="add-cart"
+    btnCart.textContent="Add to cart"
+    btnCart.addEventListener("click",showCartAdd)
 
     card.appendChild(img)
     card.appendChild(cardFoot)
@@ -165,5 +146,71 @@ function createProduct(){
 
 };
 };
+//product detil dailog//
+function onViewProduct(event){
+  show(dom_view_product);
+  let index = event.target.parentElement.parentElement.parentElement.dataset.index;
+  let productName=document.querySelector("#product-name").firstElementChild;
+  let productImg=document.querySelector("#picture").firstElementChild;
+  let productPrice=document.querySelector("#number").firstElementChild;
+  let productCurrency=document.querySelector("#currency").firstElementChild;
+  let productDescription=document.querySelector("#description").firstElementChild;
+  productImg.src=products[index].img
+  productName.textContent=products[index].name
+  productPrice.textContent=products[index].price
+  productCurrency.textContent=products[index].currency
+  productDescription.textContent=products[index].description
+  
+
+};
+function cartCancell(event){
+  hide(dom_view_product);
+
+};
+function showCartAdd(event){
+  show(dom_product_cart)
+}
+function addCart(event){
+  hide(dom_view_product);
+  show(dom_product_cart)
+  
+}
+function cancellCart_dialog(event){
+  hide(dom_product_cart)
+}
+
+function cancell_in_buyPro(event){
+  hide(dom_buy_product)
+}
+function buyProduct(event){
+  hide(dom_product_cart)
+  show(dom_buy_product)
+}
+
+function submit_buy_pro(event){
+  hide(dom_buy_product);
+}
+
+let submit=dom_buy_product.querySelector("#submit-buy");
+submit.addEventListener("click",submit_buy_pro);
+
+
+
+let cancell=dom_view_product.querySelector("#cancel-cart");
+cancell.addEventListener("click",cartCancell)
+
+let cancelInCart=dom_product_cart.querySelector("#cancel")
+cancelInCart.addEventListener("click",cancellCart_dialog)
+
+let buyPro=dom_product_cart.querySelector("#buy")
+buyPro.addEventListener("click",buyProduct)
+
+let cancelToBuy=dom_buy_product.querySelector("#cancel-buy")
+cancelToBuy.addEventListener("click",cancell_in_buyPro)
+
+let addToCart=dom_view_product.querySelector("#add-cart");
+addToCart.addEventListener("click",addCart);
+
+
 createProduct();
 loadQuestions();

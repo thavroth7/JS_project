@@ -26,13 +26,15 @@
         <header>Add Product</header>
         <section>
           <label>Name Of Product</label>
-          <input id="choiceA" type="text" placeholder="name Of Product" />
+          <input id="name-product" type="text" placeholder="product name" />
           <label>Product Image</label>
-          <input id="choiceB" type="text" placeholder="product Image" />
+          <input id="product-img" type="text" placeholder="product Image" />
           <label>Price</label>
-          <input id="choiceC" type="number" placeholder="price"/>
+          <input id="product-price" type="number" placeholder="price"/>
           <label>Currency</label>
-          <input id="choiceD" type="text" placeholder="currency"/>
+          <input id="product-currency" type="text" placeholder="currency"/>
+          <label>Description</label>
+          <textarea name="sms" id="product-description" cols="105" rows="5" placeholder="Add description"></textarea>
          
         </section>
         <menu>
@@ -52,7 +54,8 @@
               <th>Product image</th>
               <th>Price</th>
               <th>Currency</th>
-              <th>Action</th>
+              <th>Description</th>
+              <th id="actions">Actions</th>
             </tr>
           </thead>
           <tbody id="add-product">
