@@ -130,11 +130,13 @@ function editQuestion(event) {
   document.querySelector("#product-price").value=product.price;
   document.querySelector("#product-currency").value=product.currency;
   document.querySelector("#product-description").value=product.description;
-  
+ 
   //TO SHOW DIALOG
   show(dom_questions_dialog);
   btnEdit.textContent = "Edit"
   products.splice(index,1)
+  if (!(product.name && product.img && product.price && product.description)) 
+  return confirm("You must fill all inputs");
 
 };
 function clearInt(){
@@ -163,7 +165,6 @@ function onAddQuestion() {
 }
 
 function onCancel(e) {
-
   hide(dom_questions_dialog)
 }
 
@@ -178,6 +179,7 @@ function onCreate(event) {
   newProducts.price= dom_questions_dialog.querySelector("#product-price").value;
   newProducts.currency= dom_questions_dialog.querySelector("#product-currency").value;
   newProducts.description= dom_questions_dialog.querySelector("#product-description").value;
+  if (!(newProducts.name && newProducts.img && newProducts.price && newProducts.description)) return confirm("You must fill all inputs");
   clearInt()
  
   // // 3- Update the list of question, save question on local sotrage, update the view

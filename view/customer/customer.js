@@ -119,13 +119,12 @@ function createProduct(){
     productDetail.textContent="View";
     productDetail.addEventListener("click",onViewProduct)
 
-   
-  
 
     let btnCart=document.createElement("button")
     btnCart.className="add-cart"
     btnCart.textContent="Add to cart"
     btnCart.addEventListener("click",showCartAdd)
+    console.log(btnCart)
 
     card.appendChild(img)
     card.appendChild(cardFoot)
@@ -160,15 +159,29 @@ function onViewProduct(event){
   productPrice.textContent=products[index].price
   productCurrency.textContent=products[index].currency
   productDescription.textContent=products[index].description
-  
-
 };
+
 function cartCancell(event){
   hide(dom_view_product);
 
 };
+let number=0;
 function showCartAdd(event){
   show(dom_product_cart)
+  let cart_container=document.querySelector(".dialog-cart")
+  let index = event.target.parentElement.parentElement.parentElement.dataset.index;
+  if(index){
+    number+=1
+    let product_img=document.createElement("img")
+    product_img.src=products[index].img
+    cart_container.appendChild(product_img)
+
+    // productPrice.textContent=products[index].price
+    // productCurrency.textContent=products[index].currency
+  }
+  console.log(number)
+  console.log(products[index])
+
 }
 function addCart(event){
   hide(dom_view_product);
