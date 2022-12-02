@@ -35,18 +35,16 @@
           <input id="product-currency" type="text" placeholder="currency"/>
           <label>Description</label>
           <textarea name="sms" id="product-description" cols="105" rows="5" placeholder="Add description"></textarea>
-         
         </section>
         <menu>
-          <button>Cancel</button>
-          <button id="create">Create</button>
+          <button onclick="onCancel()">CANCEL</button>
+          <button id="createEditButton" onclick="onCreate()">CREATE</button>
         </menu>
       </dialog>
     </div>
-
     <div id="edit-view">
       <div id="questions-view">
-        <button>Add Product</button>
+        <button onclick="onAddProduct()">Add product</button>
         <table id="product-view">
           <thead>
             <tr>

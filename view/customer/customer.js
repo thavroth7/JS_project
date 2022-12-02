@@ -4,6 +4,7 @@ const dom_container=document.querySelector("#container");
 
 const dom_product_cart=document.querySelector("#product-cart");
 const dom_buy_product=document.querySelector("#buy-product");
+const dom_title_cart=document.querySelector("#product-title-cart")
 
 // DATA  ---------------------------------------------------------
 let products=[{
@@ -54,17 +55,17 @@ function loadQuestions() {
 function createProduct(){
   loadQuestions()
   let productContainer=document.querySelector("#play-view");
-  for (let index = 0; index < products.length; index++){
+  for (let index = 0; index < products.length; index++) {
     let product = products[index];
+    
     let card=document.createElement("div")
     card.className="card";
-    card.dataset.index=index
+    card.dataset.index=index;
+  
     productContainer.appendChild(card)
-    console.log(index)
     
-
-    let img=document.createElement("img")
-    img.src=product.img
+    let image=document.createElement("img")
+    image.src=product.img;
 
     let cardFoot=document.createElement("div")
     cardFoot.className="card-footer"
@@ -72,7 +73,7 @@ function createProduct(){
 
     let productName=document.createElement("span");
     productName.className="name"
-    productName.textContent=product.name
+    productName.textContent=product.name;
     
     let rating=document.createElement("div")
     rating.className="rate"
@@ -103,11 +104,11 @@ function createProduct(){
     price.className="price"
 
     let priceNumber=document.createElement("span")
-    priceNumber.textContent=product.price
+    priceNumber.textContent=product.price;
    
 
     let Currency=document.createElement("span")
-    Currency.textContent=product.currency
+    Currency.textContent=product.currency;
   
 
     let cart=document.createElement("div")
@@ -124,9 +125,9 @@ function createProduct(){
     btnCart.className="add-cart"
     btnCart.textContent="Add to cart"
     btnCart.addEventListener("click",showCartAdd)
-    console.log(btnCart)
+  
 
-    card.appendChild(img)
+    card.appendChild(image)
     card.appendChild(cardFoot)
     cardFoot.appendChild(productName)
     cardFoot.appendChild(rating)
@@ -143,12 +144,13 @@ function createProduct(){
     cart.appendChild(btnCart)
     
 
-};
+  };
 };
 //product detil dailog//
 function onViewProduct(event){
   show(dom_view_product);
   let index = event.target.parentElement.parentElement.parentElement.dataset.index;
+
   let productName=document.querySelector("#product-name").firstElementChild;
   let productImg=document.querySelector("#picture").firstElementChild;
   let productPrice=document.querySelector("#number").firstElementChild;
@@ -159,30 +161,112 @@ function onViewProduct(event){
   productPrice.textContent=products[index].price
   productCurrency.textContent=products[index].currency
   productDescription.textContent=products[index].description
+ 
 };
 
 function cartCancell(event){
   hide(dom_view_product);
 
 };
-let number=0;
+
+//serch data//
+function searchProduct(event) {
+  // 1- Get the search text
+  let search=searchDataInput.value.toLowerCase()
+  
+  // 2- Loop on product name
+  let searchData = document.querySelectorAll(".card");
+
+  for (value of searchData){
+  
+    let title_product = value.children[1].firstElementChild.textContent.toLowerCase()
+    
+    value.style.display="none"
+    if(title_product===search|| title_product.includes(search)){
+      value.style.display="block"
+    };
+    
+   
+  };
+};
+let searchDataInput = document
+  .getElementById("search-product")
+  .querySelector("input");
+searchDataInput.addEventListener("keyup", searchProduct);
+
+//add to cart//
+
 function showCartAdd(event){
   show(dom_product_cart)
-  let cart_container=document.querySelector(".dialog-cart")
+  
+  let cart_data=document.querySelector("#store-product")
   let index = event.target.parentElement.parentElement.parentElement.dataset.index;
-  if(index){
-    number+=1
-    let product_img=document.createElement("img")
-    product_img.src=products[index].img
-    cart_container.appendChild(product_img)
+  let number=0;
+  let i=0
+  
+  if( i !=index){
+        let i=index
+        let tr=document.createElement("tr")
+        cart_data.appendChild(tr)
 
-    // productPrice.textContent=products[index].price
-    // productCurrency.textContent=products[index].currency
-  }
-  console.log(number)
-  console.log(products[index])
+        let img_product_cart=document.createElement("td")
+        tr.appendChild(img_product_cart)
 
-}
+        let product_img=document.createElement("img")
+        product_img.src=products[index].img;
+        img_product_cart.appendChild(product_img)
+
+        let productPrice=document.createElement("td")
+        tr.appendChild(productPrice)
+
+        let span_price=document.createElement("span");
+        span_price.textContent=products[index].price
+        productPrice.appendChild(span_price)
+        
+        let span_Currency=document.createElement("span")
+        span_Currency.textContent=products[index].currency
+        productPrice.appendChild(span_Currency)
+        
+        // console.log(i)
+        // console.log(index)
+        
+        
+      }
+      else{
+        number+=1
+       
+      }
+  };
+    
+
+  
+    // let tr=document.createElement("tr")
+    // cart_data.appendChild(tr)
+
+    // let img_product_cart=document.createElement("td")
+    // tr.appendChild(img_product_cart)
+
+    // let product_img=document.createElement("img")
+    // product_img.src=products[index].img
+    // img_product_cart.appendChild(product_img)
+
+    // let productPrice=document.createElement("td")
+    // tr.appendChild(productPrice)
+
+    // let span_price=document.createElement("span");
+    // span_price.textContent=products[index].price
+    // productPrice.appendChild(span_price)
+    
+    // let span_Currency=document.createElement("span")
+    // span_Currency.textContent=products[index].currency
+    // productPrice.appendChild(span_Currency)
+
+
+
+ 
+
+
+
 function addCart(event){
   hide(dom_view_product);
   show(dom_product_cart)

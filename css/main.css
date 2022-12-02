@@ -325,8 +325,7 @@ nav #nav-right{
 dialog {
     
     position: fixed;
-    top: 10vh;
-    /* height: 100vh; */
+    top: 5vh;
     left: 20%;
     width: 60%;
     z-index: 100;
@@ -335,8 +334,11 @@ dialog {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     padding: 0;
     margin: 0;
-    /* overflow:hidden scroll ; */
     overflow: hidden;
+}
+#product-cart dialog{
+    overflow:hidden scroll ; 
+    height: 90vh;
 }
   
 dialog header {
@@ -503,9 +505,7 @@ tr .text, #description span{
 }
 #dialog-box{
     display: flex;
-    padding: 1rem;
-   
-   
+    padding: 1rem; 
 }
 
 dialog menu button{
@@ -549,4 +549,16 @@ dialog menu button{
     font-size: 20px;
     font-weight: normal;
    
+}
+#store-product td img{
+    width: 50px;
+}
+#store-product-cart{
+    border: none;
+    width: 100%;
+}
+#product-title-cart{
+    border: none;
+    width: 100%;
+
 }

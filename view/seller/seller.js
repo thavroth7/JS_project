@@ -2,6 +2,9 @@
 const dom_product_view = document.querySelector("#product-view");
 const dom_questions_dialog = document.querySelector("#questions-dialog");
 const dom_questions_view=document.querySelector("#questions-view")
+const dom_createEditButton = document.getElementById("createEditButton");
+
+
 
 // DATA  ---------------------------------------------------------
 let products=[{
@@ -9,7 +12,7 @@ let products=[{
   "name":"BTS lightstick",
   "price":"50",
   "currency":"$",
-  "description":"It’s not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. "
+  "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. "
 
 },
 {
@@ -17,7 +20,7 @@ let products=[{
   "name":"BTS lightstick",
   "price":"50",
   "currency":"$",
-  "description":"It’s not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. "
+  "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. "
 
 },
 {
@@ -25,16 +28,20 @@ let products=[{
   "name":"BTS lightstick",
   "price":"50",
   "currency":"$",
-  "description":"It’s not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. "
+  "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. "
 
 }
 ];
-let btnEdit = document.querySelector("#create")
+
 let productIpt = document.querySelector("#name-product")
 let priceIpt = document.querySelector("#product-price")
 let imgIpt = document.querySelector("#product-img")
 let currencyIpt = document.querySelector("#product-currency")
 let descriptionIpt = document.querySelector("#product-description")
+let productToEdit = null;
+
+
+
 // Hide a given element
 function hide(element) {
   element.style.display = "none";
@@ -56,7 +63,7 @@ function loadQuestions() {
   };
  
 }
-//  EDIT ---------------------------------------------------------
+//  create product ---------------------------------------------------------
 function createProduct(){
   loadQuestions()
   let product_container = document.querySelector("#add-product");
@@ -64,34 +71,29 @@ function createProduct(){
   product_container = document.createElement("tbody");
   product_container.id="add-product";
   dom_product_view.appendChild(product_container);
-
   for (let index = 0; index < products.length; index++) {
     let product = products[index];
     let addProduct = document.createElement('tr');
-    addProduct.dataset.index = index;
+    addProduct.dataset.index =index ;
     product_container.appendChild(addProduct);
 
     let nameProduct = document.createElement('td');
-    nameProduct.className="span"
-    nameProduct.textContent=product.name
+    nameProduct.textContent=product.name;
     addProduct.appendChild(nameProduct)
    
     let imageProduct = document.createElement('td');
     imageProduct.className="images";
-    imageProduct.src=product.img;
-
     addProduct.appendChild(imageProduct);
+    
     let imgProduct=document.createElement('img');
     imgProduct.src=product.img;
     imageProduct.appendChild(imgProduct);
 
     let priceProduct = document.createElement('td');
-    priceProduct.className="span";
     priceProduct.textContent=product.price;
     addProduct.appendChild(priceProduct);
 
     let Currency=document.createElement('td');
-    Currency.className="span";
     Currency.textContent=product.currency;
     addProduct.appendChild(Currency);
 
@@ -108,7 +110,7 @@ function createProduct(){
     let editAction = document.createElement("img");
 
     editAction.src = "../../images/edit.svg";
-    editAction.addEventListener("click", editQuestion);
+    editAction.addEventListener("click", editProduct);
    
     actions.appendChild(editAction);
 
@@ -117,28 +119,10 @@ function createProduct(){
     trashAction.src = "../../images/trash.png";
     trashAction.addEventListener("click", removeQuestion);
     actions.appendChild(trashAction);
-    console.log(product_container);
-}
+   
+  };
 };
-function editQuestion(event) {
-  let index = event.target.parentElement.parentElement.dataset.index;
-  let product=products[index];
-  //TODO update the new dialog//
-  
-  document.querySelector("#name-product").value=product.name;
-  document.querySelector("#product-img").value=product.img;
-  document.querySelector("#product-price").value=product.price;
-  document.querySelector("#product-currency").value=product.currency;
-  document.querySelector("#product-description").value=product.description;
- 
-  //TO SHOW DIALOG
-  show(dom_questions_dialog);
-  btnEdit.textContent = "Edit"
-  products.splice(index,1)
-  if (!(product.name && product.img && product.price && product.description)) 
-  return confirm("You must fill all inputs");
 
-};
 function clearInt(){
   priceIpt.value ="";
   productIpt.value = "";
@@ -155,51 +139,76 @@ function removeQuestion(event) {
   saveQuestions();
   // Update the view
   createProduct();
-}
+};
 
-function onAddQuestion() {
+function onAddProduct() {
   // TODO : when clicking on ADD button, display the dialog
-  show(dom_questions_dialog)
-  clearInt()
-  btnEdit.textContent = "Create"
+    show(dom_questions_dialog);
+    productToEdit = null;
+    clearInt();
+
 }
 
 function onCancel(e) {
-  hide(dom_questions_dialog)
+  dom_createEditButton.textContent = "CREATE";
+  hide(dom_questions_dialog);
 }
 
-function onCreate(event) {
- 
-  // 1- Hide the dialog
+function editProduct(event) {
+  //  Get the question index
+  productToEdit = event.target.parentElement.parentElement.dataset.index;
+
+  // update the dialog with question informatin
+  let product = products[productToEdit];
+  document.getElementById("name-product").value =product.name;
+  document.getElementById("product-img").value = product.img;
+  document.getElementById("product-price").value = product.price;
+  document.getElementById("product-currency").value = product.currency;
+  document.getElementById("product-description").value=product.description;
+  // Show the dialog
+  dom_createEditButton.textContent = "EDIT";
+  show(dom_questions_dialog);
+  
+}
+
+function onCreate() {
   hide(dom_questions_dialog);
- 
-  let newProducts ={};
-  newProducts.name= dom_questions_dialog.querySelector("#name-product").value;
-  newProducts.img= dom_questions_dialog.querySelector("#product-img").value;
-  newProducts.price= dom_questions_dialog.querySelector("#product-price").value;
-  newProducts.currency= dom_questions_dialog.querySelector("#product-currency").value;
-  newProducts.description= dom_questions_dialog.querySelector("#product-description").value;
-  if (!(newProducts.name && newProducts.img && newProducts.price && newProducts.description)) return confirm("You must fill all inputs");
-  clearInt()
- 
-  // // 3- Update the list of question, save question on local sotrage, update the view
-  products.push(newProducts);
+
+
+  if (productToEdit !== null) {
+    let editProduct = products[productToEdit];
+    editProduct.name = document.getElementById("name-product").value;
+    editProduct.img = document.getElementById("product-img").value;
+    editProduct.price = document.getElementById("product-price").value;
+    editProduct.currency = document.getElementById("product-currency").value;
+    editProduct.description = document.getElementById("product-description").value;
+    
+  } else {
+    let newProduct = {};
+    newProduct.name = document.getElementById("name-product").value;
+    newProduct.img = document.getElementById("product-img").value;
+    newProduct.price = document.getElementById("product-price").value;
+    newProduct.currency = document.getElementById("product-currency").value;
+    newProduct.description = document.getElementById("product-description").value;
+    products.push(newProduct);
+  }
+  
+  // 2- Save question
   saveQuestions();
+
+  // 3 - Update the view
   createProduct();
 }
+
 // MAIN  ---------------------------------------------------------
-
-// saveQuestions();
-
 createProduct();
 
-let questioButton=dom_questions_view.querySelector("button")
-questioButton.addEventListener("click",onAddQuestion);
 
-let groupBtn=dom_questions_dialog.querySelectorAll("button")
-let cancelBtn=groupBtn[0]
-let createBtn=groupBtn[1]
 
-createBtn.addEventListener("click",onCreate);
-cancelBtn.addEventListener("click",onCancel);
+
+
+
+
+
+
  

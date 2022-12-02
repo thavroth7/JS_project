@@ -27,7 +27,7 @@
         <div id="nav-right">
             <ul>
                 <a href=""><i class="fa fa-user-circle" aria-hidden="true"></i></a>
-                <a href=""><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                <a href="" id="store-product"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
             </ul>
            
         </div>
@@ -67,6 +67,20 @@
         <dialog open>
           <header>Add cart</header>
           <div id="dialog-box" class="dialog-cart">
+            <table id="store-product-cart">
+                <thead id="product-title-cart">
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="store-product">
+
+                </tbody>
+                
+            </table>
           </div>
           <menu>
             <button id="cancel">Cancel</button>
