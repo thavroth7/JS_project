@@ -7,12 +7,13 @@ const dom_createEditButton = document.getElementById("createEditButton");
 
 
 // DATA  ---------------------------------------------------------
-let products=[{
+let allProducts=[{
   "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/product-image-1467786798_360x.jpg?v=1596432994",
   "name":"BTS lightstick",
   "price":"50",
   "currency":"$",
-  "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. "
+  "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. ",
+  "type":"BLACKPINK"
 
 },
 {
@@ -20,7 +21,8 @@ let products=[{
   "name":"BTS lightstick",
   "price":"50",
   "currency":"$",
-  "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. "
+  "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. ",
+  "type":"BLACKPINK"
 
 },
 {
@@ -28,10 +30,11 @@ let products=[{
   "name":"BTS lightstick",
   "price":"50",
   "currency":"$",
-  "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. "
+  "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. ",
+  "type":"BTS"
 
-}
-];
+},
+]
 
 let productIpt = document.querySelector("#name-product")
 let priceIpt = document.querySelector("#product-price")
@@ -52,27 +55,27 @@ function show(element) {
 }
 
 //  LOCAL STORAGE ---------------------------------------------------------
-function saveQuestions() {
-  localStorage.setItem("products", JSON.stringify(products));
+function saveProducts() {
+  localStorage.setItem("allProducts", JSON.stringify(allProducts));
 }
 
-function loadQuestions() {
-  let productsStorage = JSON.parse(localStorage.getItem("products"));
+function loadProducts() {
+  let productsStorage = JSON.parse(localStorage.getItem("allProducts"));
   if (productsStorage!== null){
-      products =productsStorage;
+      allProducts =productsStorage;
   };
  
 }
 //  create product ---------------------------------------------------------
 function createProduct(){
-  loadQuestions()
+  loadProducts()
   let product_container = document.querySelector("#add-product");
   product_container.remove();
   product_container = document.createElement("tbody");
   product_container.id="add-product";
   dom_product_view.appendChild(product_container);
-  for (let index = 0; index < products.length; index++) {
-    let product = products[index];
+  for (let index = 0; index < allProducts.length; index++) {
+    let product = allProducts[index];
     let addProduct = document.createElement('tr');
     addProduct.dataset.index =index ;
     product_container.appendChild(addProduct);
@@ -117,7 +120,7 @@ function createProduct(){
     let trashAction = document.createElement("img");
     trashAction.className="trash"
     trashAction.src = "../../images/trash.png";
-    trashAction.addEventListener("click", removeQuestion);
+    trashAction.addEventListener("click", removeProduct);
     actions.appendChild(trashAction);
    
   };
@@ -130,13 +133,13 @@ function clearInt(){
   currencyIpt.value = "";
   descriptionIpt.value = "";
 }
-function removeQuestion(event) {
+function removeProduct(event) {
   //  Get index
   let index = event.target.parentElement.parentElement.dataset.index;
-  // Remove question
-  products.splice(index, 1);
+  // Remove product
+  allProducts.splice(index, 1);
   // Save to local storage
-  saveQuestions();
+  saveProducts();
   // Update the view
   createProduct();
 };
@@ -159,12 +162,13 @@ function editProduct(event) {
   productToEdit = event.target.parentElement.parentElement.dataset.index;
 
   // update the dialog with question informatin
-  let product = products[productToEdit];
+  let product = allProducts[productToEdit];
   document.getElementById("name-product").value =product.name;
   document.getElementById("product-img").value = product.img;
   document.getElementById("product-price").value = product.price;
   document.getElementById("product-currency").value = product.currency;
   document.getElementById("product-description").value=product.description;
+  document.getElementById("select").value=product.type
   // Show the dialog
   dom_createEditButton.textContent = "EDIT";
   show(dom_questions_dialog);
@@ -176,12 +180,13 @@ function onCreate() {
 
 
   if (productToEdit !== null) {
-    let editProduct = products[productToEdit];
+    let editProduct = allProducts[productToEdit];
     editProduct.name = document.getElementById("name-product").value;
     editProduct.img = document.getElementById("product-img").value;
     editProduct.price = document.getElementById("product-price").value;
     editProduct.currency = document.getElementById("product-currency").value;
     editProduct.description = document.getElementById("product-description").value;
+    editProduct.description= document.getElementById("select").value
     
   } else {
     let newProduct = {};
@@ -190,11 +195,12 @@ function onCreate() {
     newProduct.price = document.getElementById("product-price").value;
     newProduct.currency = document.getElementById("product-currency").value;
     newProduct.description = document.getElementById("product-description").value;
-    products.push(newProduct);
+    newProduct.type= document.getElementById("select").value
+    allProducts.push(newProduct);
   }
   
   // 2- Save question
-  saveQuestions();
+  saveProducts();
 
   // 3 - Update the view
   createProduct();
@@ -202,6 +208,7 @@ function onCreate() {
 
 // MAIN  ---------------------------------------------------------
 createProduct();
+
 
 
 

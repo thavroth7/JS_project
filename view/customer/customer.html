@@ -26,8 +26,11 @@
         </div>
         <div id="nav-right">
             <ul>
-                <a href=""><i class="fa fa-user-circle" aria-hidden="true"></i></a>
-                <a href="" id="store-product"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
+                <a href="#"><i class="fa fa-user-circle" aria-hidden="true"></i></a>
+                <a href="#">
+                    <i class="fa fa-shopping-cart" id="product-icon"></i>
+                    <span id="count-product" style="display:none ;">0</span>
+                </a>
             </ul>
            
         </div>
@@ -63,31 +66,7 @@
             </menu>
         </dialog>
     </div>
-    <div id="product-cart" style="display: none">
-        <dialog open>
-          <header>Add cart</header>
-          <div id="dialog-box" class="dialog-cart">
-            <table id="store-product-cart">
-                <thead id="product-title-cart">
-                    <tr>
-                        <th>Product</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody id="store-product">
-
-                </tbody>
-                
-            </table>
-          </div>
-          <menu>
-            <button id="cancel">Cancel</button>
-            <button id="buy">Buy Now</button>
-          </menu>
-        </dialog>
-    </div>
+    
     <div id="buy-product" style="display: none">
         <dialog open>
             <header>Buy product</header>
@@ -99,6 +78,30 @@
             </menu>
         </dialog>
     </div>
+    <div id="store-cart-product" style="display:none ;">
+        <h1>Your cart</h1>
+        <div id="mesages-no-product">
+            <div id="no-cart"><h3>No cart here</h3></div>
+            <button id="block-message">Go to shopping</button>
+        </div>
+        <div id="dialog-box" class="dialog-cart">
+            <table id="store-product">
+                <thead id="product-title">
+
+                </thead>
+                <tbody id="store-product">
+
+                </tbody>
+                
+            </table>
+            <menu>
+              <button id="cancel">Cancel</button>
+              <button id="buy">Buy Now</button>
+            </menu>
+        </div>
+
+
+    </div>
     <div id="container">
         <div id="sidebar-left">
             <div id="choose-item">
@@ -109,7 +112,7 @@
                         <option value="ALBUMS & DVD'S">ALBUMS & DVD'S</option>
                         <option value="Photo Cards">Photo Cards</option>
                         <option value=" Sticker"> Sticker</option>
-                        <option value=" Clothing"> Clothing</option>
+                        <option value="Clothing"> Clothing</option>
                         <option value=" Bags"> Bags</option>
                         <option value="BT21"> BT21</option>
                         <option value="Photo book"> Photo book</option>
@@ -125,7 +128,7 @@
                    <i class="material-icons">star</i></a>
                   <i class="material-icons">star</i></a>
                    <i class="material-icons">star</i></a>
-                    <span>& Up</span>
+                  
                 </div>
                 <div id="ratingAverage">
                    <i class="material-icons">star</i></a>
@@ -133,7 +136,7 @@
                   <i class="material-icons">star</i></a>
                    <i class="material-icons">star</i></a>
                    <i class="material-icons">star_border</i></a>
-                    <span>& Up</span>
+                  
                 </div>
                 <div id="ratingAverage">
                     <i class="material-icons">star</i></a>
@@ -141,7 +144,7 @@
                    <i class="material-icons">star</i></a>
                    <i class="material-icons">star_border</i></a>
                    <i class="material-icons">star_border</i></a>
-                    <span>& Up</span>
+                 
                 </div>
                 <div id="ratingAverage">
                     <i class="material-icons">star</i>
@@ -149,7 +152,7 @@
                    <i class="material-icons">star_border</i></a>
                     <i class="material-icons">star_border</i></a>
                     <i class="material-icons">star_border</i></a>
-                    <span>& Up</span>
+                  
                 </div>
                 <div id="ratingAverage">
                     <i class="material-icons">star</i></a>
@@ -157,16 +160,7 @@
                     <i class="material-icons">star_border</i></a>
                     <i class="material-icons">star_border</i></a>
                    <i class="material-icons">star_border</i></a>
-                    <span>& Up</span>
-                </div>
-
-            </div>
-            <div id="price-range">
-                <span class="item">Price Range</span>
-                <div id="add-price">
-                    <input type="text" placeholder="$Min">
-                    <input type="text" placeholder="$Max">
-                    <button id="btn-price">Add</button>
+                 
                 </div>
 
             </div>
@@ -174,59 +168,55 @@
                 <span class="item">Brands</span>
                 <div id="choose-brands">
                     <div id="radio">
-                        <input type="radio" name="brand-select">
+                        <input type="radio" name="brand-select" id="brand" value="BTS">
                         <span>BTS</span>
                     </div>
                     <div id="radio">
-                        <input type="radio" name="brand-select">
+                        <input type="radio" name="brand-select" id="brand" value="TXT">
                         <span>TXT</span>
 
                     </div>
                     <div id="radio">
-                        <input type="radio" name="brand-select">
+                        <input type="radio" name="brand-select" id="brand" value="BLACKPINK">
                         <span>BLACKPINK</span>
 
                     </div>
                     <div id="radio">
-                        <input type="radio" name="brand-select">
+                        <input type="radio" name="brand-select" id="brand" value="TWICE">
                         <span>TWICE</span>
-
                     </div>
                     <div id="radio">
-                        <input type="radio" name="brand-select">
+                        <input type="radio" name="brand-select" id="brand" value="EXO">
                         <span>EXO</span>
 
                     </div>
+                    
                     <div id="radio">
-                        <input type="radio" name="brand-select">
-                        <span>STAY KIDS</span>
-
-                    </div>
-                    <div id="radio">
-                        <input type="radio" name="brand-select">
+                        <input type="radio" name="brand-select" id="brand" value="ENHYPEN">
                         <span>ENHYPEN</span>
 
                     </div>
                     <div id="radio">
-                        <input type="radio" name="brand-select">
+                        <input type="radio" name="brand-select" id="brand" value="ITZY">
                         <span>ITZY</span>
 
                     </div>
+                    
                     <div id="radio">
-                        <input type="radio" name="brand-select">
-                        <span>MONSTA X</span>
+                        <input type="radio" name="brand-select" id="brand" value="SEVENTEEN">
+                        <span>SEVENTEEN</span>
 
                     </div>
                     <div id="radio">
-                        <input type="radio" name="brand-select">
-                        <span>SEVENTEEN</span>
+                        <input type="radio" name="brand-select" id="brand" value="ALL BRAND">
+                        <span>ALL BRAND</span>
 
                     </div>
                 </div>
 
             </div>
         </div>
-        <div id="store-product">
+        <div id="store-products">
             <div id="sort-bar">
                 <div id="sort">
                     <span>Sort by:</span>
@@ -246,7 +236,10 @@
                     </form>
                 </div>
             </div>
-            <div id="play-view"></div>
+          
+            <div id="play-view">
+                <!-- card -->
+            </div>
         </div>
     </div>
     <div id="footer">
