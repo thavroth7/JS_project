@@ -25,7 +25,7 @@ function loadProducts() {
   if (storedProducts !== null) {
     allProducts = storedProducts;
   }
-  return allProducts;
+  
 }
 
 //
