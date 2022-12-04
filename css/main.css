@@ -652,3 +652,22 @@ h1{
     background-color: var(--main-color);
     color: white;
 }
+#welcome .title span{
+    margin-left: 15px;
+    font-size: larger;
+}
+#welcome .title h2{
+    font-size: 35px;
+    font-weight: bold;
+}
+#welcome .title{
+    margin-left: 70px;
+}
+#welcome{
+    margin-bottom: 20px;
+    display: flex;
+    
+}
+#welcome .image{
+    margin-right: -40px;
+}
