@@ -1,58 +1,20 @@
 // DOMS ELEMENTS  -------------------------------------------------------
 const dom_view_product = document.querySelector("#product-dialog");
-const dom_container = document.querySelector("#container");
-const dom_store_product = document.querySelector("#store-products")
-const dom_product_cart = document.querySelector("#store-cart-product");
-const dom_buy_product = document.querySelector("#buy-product");
-const dom_title_cart = document.querySelector("#product-title-cart")
-const dom_navbar =document.querySelector("#nav-right")
-const dom_search_input=document.querySelector(".nav-center")
-const dom_no_cart=document.querySelector("#mesages-no-product")
-const dom_hide_cart_box=document.querySelector("#dialog-cart")
-let count_product=document.querySelector("#count-product")
+const dom_store_product=document.querySelector("#store-products")
+const show_box_contain_cart=document.querySelector("#dialog-box")
 
-
-
-//All list of products 
-// let allProducts=[{
-//   "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/product-image-1467786798_360x.jpg?v=1596432994",
-//   "name":"BTS lightstick",
-//   "price":"50",
-//   "currency":"$",
-//   "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. ",
-//   "type":"BLACKPINK"
-
-// },
-// {
-//   "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/product-image-1467786798_360x.jpg?v=1596432994",
-//   "name":"BTS lightstick",
-//   "price":"50",
-//   "currency":"$",
-//   "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. ",
-//   "type":"BLACKPINK"
-
-// },
-// {
-//   "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/product-image-1467786798_360x.jpg?v=1596432994",
-//   "name":"BTS lightstick",
-//   "price":"50",
-//   "currency":"$",
-//   "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. ",
-//   "type":"BTS"
-
-// },
-// ];
 
 // FUNCTIONS ---------------------------------------------------------
+//HIDE ELEMENT---------------------
 function hide(element) {
   element.style.display = "none";
 }
-
+//show-------ELEMENT------------
 function show(element) {
   element.style.display = "block";
 }
 // Save questions to local storage
-function saveQuestions() {
+function saveProducts() {
   localStorage.setItem("allProducts", JSON.stringify(allProducts));
 }
 
@@ -142,7 +104,7 @@ function renderProducts(productsToRender) {
     let btnCart = document.createElement("button")
     btnCart.className = "add-cart"
     btnCart.textContent = "Add to cart"
-    // btnCart.addEventListener("click", showCartAdd)
+    btnCart.addEventListener("click", addproductsToCart)
 
     card.appendChild(image)
     card.appendChild(cardFoot)
@@ -163,8 +125,7 @@ function renderProducts(productsToRender) {
 
   dom_store_product.appendChild(productCart)
 }
-
-
+//click view product detail
 function onViewProduct(event) {
   show(dom_view_product);
   let index = event.target.parentElement.parentElement.parentElement.dataset.index;
@@ -181,11 +142,6 @@ function onViewProduct(event) {
   productDescription.textContent = allProducts[index].description
 
 }
-
-function cartCancell(event) {
-  hide(dom_view_product);
-};
-
 //serch products//
 function searchProduct(event) {
   // 1- Get the search text
@@ -207,74 +163,25 @@ function searchProduct(event) {
   };
 };
 
-
 //add products to cart//
-
-// function showCartAdd(event) {
-  
-//   //  hide(dom_no_cart)
-//   //  show(dom_hide_cart_box)
-
-  
-//   let cart_data = document.querySelector("#store-product")
-//   let index = event.target.parentElement.parentElement.parentElement.dataset.index;
-
-
-
-  
-//     number0fProduct+=1
-//     let tr = document.createElement("tr")
-//     cart_data.appendChild(tr)
-
-//     let img_product_cart = document.createElement("td")
-//     tr.appendChild(img_product_cart)
-
-//     let product_img = document.createElement("img")
-//     product_img.src = allProducts[index].img;
-//     img_product_cart.appendChild(product_img)
-
-//     let productPrice = document.createElement("td")
-//     tr.appendChild(productPrice)
-
-//     let span_price = document.createElement("span");
-//     span_price.textContent = allProducts[index].price
-//     productPrice.appendChild(span_price)
-
-//     let span_Currency = document.createElement("span")
-//     span_Currency.textContent = allProducts[index].currency
-//     productPrice.appendChild(span_Currency)
-
-   
-
-
-//   }
-  
-
-//show products buyed//
-
-function showProductBuyed(){
-
-  // hide(dom_container)
-  // hide(dom_search_input)
-  // show(dom_product_cart)
-  // show(dom_store_product)
-  // show(dom_hide_cart_box)
-  let a=document.createElement("a")
-  a.href="../cart/cart.html"
-
+let newProductLists=[]
+let count_carts=0
+let count_product=document.querySelector("#count-product")
+function addproductsToCart(event) {
+  saveProducts()
+  //show number of products add to 
+  count_carts ++
+  count_product.textContent=count_carts
+  console.log(count_product)
+  console.log(count_carts)
+  let index=event.target.parentElement.parentElement.parentElement.dataset.index;
+  let product=allProducts[index]
+  newProductLists.push(product)
+  localStorage.setItem("newProductLists", JSON.stringify(newProductLists));
 }
-//block cart container//
-// function removeCartContainer(even){
-//   hide(dom_product_cart)
-//   show(dom_container)
-//   show(dom_search_input)
-//   window.location.reload()
-// }
-
-
+//Brand of product filter//------
 function onClickOnBrandFilter(element) {
   let newList = []
-  
   for (let product of allProducts) {
       newList.push(product)
       console.log(newList)
@@ -285,6 +192,8 @@ function onClickOnBrandFilter(element) {
 }
 
 
+
+//
 let brandSelect = document.querySelectorAll("#brand")
 brandSelect.forEach(element => {
   element.addEventListener('click', function () {onClickOnBrandFilter(element) })
@@ -292,53 +201,16 @@ brandSelect.forEach(element => {
 
 
 
-function addCart(event) {
-  hide(dom_view_product);
-  show(dom_product_cart)
+//funtion cancell view product//------------------
+function cancelViewProduct(event){
+  hide(dom_view_product)
 
 }
-function cancellCart_dialog(event) {
-  hide(dom_product_cart)
-}
-
-function cancell_in_buyPro(event) {
-  hide(dom_buy_product)
-}
-function buyProduct(event) {
-  hide(dom_product_cart)
-  show(dom_buy_product)
-}
-
-function onClickOnSubmit(event) {
-  hide(dom_buy_product);
-}
-
-let submitButton = dom_buy_product.querySelector("#submit-buy");
-submitButton.addEventListener("click", onClickOnSubmit);
-
-//click product icon show list of cart//
-let productIcon=dom_navbar.querySelector("#product-icon");
-productIcon.addEventListener("click",showProductBuyed)
+///button cancel when view product///---------------
+let cancelBtn = dom_view_product.querySelector("#cancel-cart");
+cancelBtn.addEventListener("click", cancelViewProduct)
 
 
-//button go to shopping//
-// let goToshoppingBtn=dom_no_cart.querySelector("#block-message")
-// goToshoppingBtn.addEventListener("click",removeCartContainer)
-
-let cancell = dom_view_product.querySelector("#cancel-cart");
-cancell.addEventListener("click", cartCancell)
-
-let cancelInCart = dom_product_cart.querySelector("#cancel")
-cancelInCart.addEventListener("click", cancellCart_dialog)
-
-// let buyPro = dom_product_cart.querySelector("#buy")
-// buyPro.addEventListener("click", buyProduct)
-
-// let cancelToBuy = dom_buy_product.querySelector("#cancel-buy")
-// cancelToBuy.addEventListener("click", cancell_in_buyPro)
-
-let addToCart = dom_view_product.querySelector("#add-cart");
-addToCart.addEventListener("click", addCart);
 
 //input sarch product//
 let searchDataInput = document
@@ -347,6 +219,7 @@ let searchDataInput = document
 searchDataInput.addEventListener("keyup", searchProduct);
 
 
-loadProducts();
 
+loadProducts();
+saveProducts()
 renderProducts(allProducts);

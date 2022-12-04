@@ -478,7 +478,10 @@ tr .text, #description span{
 }
 
 
-
+#cancel-cart{
+    padding: 10px;
+    margin-left: 10px;
+}
 .card-footer{
     margin-top: 5px;
     display: flex;
@@ -601,40 +604,51 @@ h2{
 #product-title tr th {
     border: none;
 }
+
 h1{
     text-align: center;
     padding: 10px;
-    background-color: var(--main-color-light);
-    margin: 0px 30px 0px 30px;
-}
-#mesages-no-product{
-    text-align: center;
-    padding: 10px;
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-direction: column;
-    margin: 50px;
+    justify-content: center;
+    
+    
+}
 
-}
-#no-cart{
+
+#count-product {
     font-size: 20px;
+    margin-bottom: 15px;
+    padding: 3px;
 }
-#block-message{
-    padding: 10px;
-    background-color: var(--main-color-light);
-   margin: 10px;
-    border: none;
+
+.dialog-cart{
+    width: 100%;
 }
-#block-message a{
-    text-decoration: none;
+#total-price{
+    font-weight: bold;
     font-size: 20px;
-    color: black;
+    margin: 20px;
 }
-#container{
+#store-cart-product menu{
     display: flex;
     flex-direction: row;
+    width: 50%;
+    margin: 10px;
+    
 }
-#store-cart-product{
-    margin: 20px;
+#store-cart-product menu button{
+    padding: 10px;
+    margin: 10px;
+    font-size: 15px;
+    background-color: white;
+    border: 2px solid var(--main-color);
+}
+#store-cart-product menu button a{
+    text-decoration: none;
+    color: black;
+}
+#store-cart-product menu button:hover,#store-cart-product menu button a:hover{
+    background-color: var(--main-color);
+    color: white;
 }
