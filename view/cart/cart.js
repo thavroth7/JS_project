@@ -1,4 +1,5 @@
 
+//call local storage//
 let customerProducts = JSON.parse(localStorage.getItem("newProductLists"));
 let cart_title=document.querySelector(".dialog-cart")
 
@@ -20,7 +21,7 @@ function loadCostomerProducts() {
 let numberOfPrices=[]
 let totalOfPriceProduct=0
 function renderCustomerProduct() {
-  saveProducts()
+  loadCostomerProducts()
   let cart_data = document.querySelector("#store-product")
   let totalPrice = document.querySelector("#total")
   for (let index = 0; index < customerProducts.length; index++) {
@@ -69,6 +70,9 @@ function renderCustomerProduct() {
       trashAction.addEventListener("click", removeProduct);
       remove.appendChild(trashAction);
       
+ 
+ 
+      
   
   
   }
@@ -84,11 +88,9 @@ function removeProduct(event) {
   let index = event.target.parentElement.parentElement.dataset.index;
   let moveProduct=customerProducts[index]
   removeList.push(moveProduct)
-  console.log(removeList)
- 
-
   totalOfPriceProduct -= moveProduct.price
   totalPrice.textContent=totalOfPriceProduct
+  
   
 }
   
@@ -96,5 +98,6 @@ function removeProduct(event) {
 
 
 //  
-renderCustomerProduct();
 //call funtion//----
+saveProducts()
+renderCustomerProduct();

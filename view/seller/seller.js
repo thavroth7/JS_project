@@ -13,7 +13,7 @@ let allProducts=[{
   "price":"50",
   "currency":"$",
   "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. ",
-  "type":"BLACKPINK"
+  
 
 },
 {
@@ -22,7 +22,7 @@ let allProducts=[{
   "price":"50",
   "currency":"$",
   "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. ",
-  "type":"BLACKPINK"
+
 
 },
 {
@@ -31,11 +31,11 @@ let allProducts=[{
   "price":"50",
   "currency":"$",
   "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. ",
-  "type":"BTS"
+
 
 },
 ]
-
+///clear data after creat nwe product or edit
 let productIpt = document.querySelector("#name-product")
 let priceIpt = document.querySelector("#product-price")
 let imgIpt = document.querySelector("#product-img")
@@ -151,7 +151,7 @@ function onAddProduct() {
     clearInt();
 
 }
-
+///cancell edit or create new product
 function onCancel(e) {
   dom_createEditButton.textContent = "CREATE";
   hide(dom_questions_dialog);
@@ -168,17 +168,14 @@ function editProduct(event) {
   document.getElementById("product-price").value = product.price;
   document.getElementById("product-currency").value = product.currency;
   document.getElementById("product-description").value=product.description;
-  document.getElementById("select").value=product.type
   // Show the dialog
   dom_createEditButton.textContent = "EDIT";
   show(dom_questions_dialog);
   
 }
-
+//create new product and edit new product//
 function onCreate() {
   hide(dom_questions_dialog);
-
-
   if (productToEdit !== null) {
     let editProduct = allProducts[productToEdit];
     editProduct.name = document.getElementById("name-product").value;
@@ -186,7 +183,7 @@ function onCreate() {
     editProduct.price = document.getElementById("product-price").value;
     editProduct.currency = document.getElementById("product-currency").value;
     editProduct.description = document.getElementById("product-description").value;
-    editProduct.description= document.getElementById("select").value
+   
     
   } else {
     let newProduct = {};
@@ -195,11 +192,10 @@ function onCreate() {
     newProduct.price = document.getElementById("product-price").value;
     newProduct.currency = document.getElementById("product-currency").value;
     newProduct.description = document.getElementById("product-description").value;
-    newProduct.type= document.getElementById("select").value
     allProducts.push(newProduct);
   }
   
-  // 2- Save question
+  // 2- Save product
   saveProducts();
 
   // 3 - Update the view

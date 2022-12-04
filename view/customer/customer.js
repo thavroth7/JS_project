@@ -9,7 +9,7 @@ let allProducts=[{
   "price":"50",
   "currency":"$",
   "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. ",
-  "type":"BLACKPINK"
+
 
 },
 {
@@ -18,7 +18,7 @@ let allProducts=[{
   "price":"50",
   "currency":"$",
   "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. ",
-  "type":"BLACKPINK"
+
 
 },
 {
@@ -27,7 +27,7 @@ let allProducts=[{
   "price":"50",
   "currency":"$",
   "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. ",
-  "type":"BTS"
+
 
 },
 ]
@@ -47,7 +47,7 @@ function saveProducts() {
 }
 
 // Load questions from local storage
-// @return the global list of product
+
 function loadProducts() {
   let storedProducts = JSON.parse(localStorage.getItem("allProducts"));
   if (storedProducts !== null) {
@@ -78,7 +78,7 @@ function renderProducts() {
     card.dataset.index = index;
     productCart.appendChild(card)
 
-    // xxxxxxxxxxx
+    // create image product
     let image = document.createElement("img")
     image.src = product.img;
 
@@ -228,8 +228,7 @@ let searchDataInput = document
   .querySelector("input");
 searchDataInput.addEventListener("keyup", searchProduct);
 
-
-
+//call funtion//
 loadProducts();
 saveProducts()
 renderProducts(allProducts);
