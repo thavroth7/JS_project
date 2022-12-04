@@ -95,6 +95,6 @@ function removeProduct(event) {
 
 
 
-// } 
+//  
 renderCustomerProduct();
 //call funtion//----
