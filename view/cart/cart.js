@@ -7,7 +7,7 @@ let list_card=document.querySelector("#store-cart-product")
 
 
 //FUNTION-----------------------------------//
-function saveProducts() {
+function saveCustomerProducts() {
   localStorage.setItem("customerProducts", JSON.stringify(customerProducts));
 }
 //loaud products//
@@ -21,7 +21,6 @@ function loadCostomerProducts() {
 let numberOfPrices=[]
 let totalOfPriceProduct=0
 function renderCustomerProduct() {
-  loadCostomerProducts()
   let cart_data = document.querySelector("#store-product")
   let totalPrice = document.querySelector("#total")
   for (let index = 0; index < customerProducts.length; index++) {
@@ -69,17 +68,13 @@ function renderCustomerProduct() {
       trashAction.src = "../../images/trash.png";
       trashAction.addEventListener("click", removeProduct);
       remove.appendChild(trashAction);
-      
- 
- 
-      
-  
+
   
   }
 }
-//caltulate price//
-let removeList=[];
+
 //funtion remove product//
+let removeList=[];
 function removeProduct(event) {
   let removeData=document.querySelector(".store-customer-product")
   let totalPrice = document.querySelector("#total")
@@ -90,8 +85,6 @@ function removeProduct(event) {
   removeList.push(moveProduct)
   totalOfPriceProduct -= moveProduct.price
   totalPrice.textContent=totalOfPriceProduct
-  
-  
 }
   
 
@@ -99,5 +92,5 @@ function removeProduct(event) {
 
 //  
 //call funtion//----
-saveProducts()
+
 renderCustomerProduct();
