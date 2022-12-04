@@ -3,7 +3,7 @@ const dom_view_product = document.querySelector("#product-dialog");
 const dom_store_product=document.querySelector("#store-products")
 const show_box_contain_cart=document.querySelector("#dialog-box")
 
-
+let allProducts = JSON.parse(localStorage.getItem("allProducts"));
 // FUNCTIONS ---------------------------------------------------------
 //HIDE ELEMENT---------------------
 function hide(element) {
@@ -30,7 +30,7 @@ function loadProducts() {
 
 //
 // render product card
-function renderProducts(productsToRender) {
+function renderProducts() {
 
 //create card container//
   let productCart = document.querySelector("#play-view");
@@ -39,10 +39,10 @@ function renderProducts(productsToRender) {
   productCart.id = "play-view"
 
   // loop for create product cart
-  for (let index = 0; index < productsToRender.length; index++) {
+  for (let index = 0; index < allProducts.length; index++) {
 
     // xxxx
-    let product = productsToRender[index];
+    let product = allProducts[index];
     let card = document.createElement("div")
     card.className = "card";
   
@@ -179,25 +179,6 @@ function addproductsToCart(event) {
   newProductLists.push(product)
   localStorage.setItem("newProductLists", JSON.stringify(newProductLists));
 }
-//Brand of product filter//------
-function onClickOnBrandFilter(element) {
-  let newList = []
-  for (let product of allProducts) {
-      newList.push(product)
-      console.log(newList)
-    
-  }
-  
-  renderProducts(newList)
-}
-
-
-
-//
-let brandSelect = document.querySelectorAll("#brand")
-brandSelect.forEach(element => {
-  element.addEventListener('click', function () {onClickOnBrandFilter(element) })
-});
 
 
 

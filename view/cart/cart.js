@@ -17,15 +17,18 @@ function loadCostomerProducts() {
   }
 }
 //Add costomer card//
+let numberOfPrices=[]
 let totalOfPriceProduct=0
 function renderCustomerProduct() {
   saveProducts()
   let cart_data = document.querySelector("#store-product")
   let totalPrice = document.querySelector("#total")
   for (let index = 0; index < customerProducts.length; index++) {
-    // xxxx
+    // find index of customer product//----
       let customerProduct = customerProducts[index];
-      //store product//
+      numberOfPrices.push(customerProduct.price)
+      console.log(numberOfPrices)
+      //container store carts//
       let tr = document.createElement("tr")
       tr.classList="store-customer-product"
       cart_data.appendChild(tr)
@@ -54,7 +57,7 @@ function renderCustomerProduct() {
       ///show total price//---
       totalPrice.textContent=totalOfPriceProduct
 
-      console.log(totalOfPriceProduct)
+      
       //remove cart//------------------
       let remove = document.createElement('td');
      
@@ -70,30 +73,28 @@ function renderCustomerProduct() {
   
   }
 }
+//caltulate price//
+let removeList=[];
 //funtion remove product//
 function removeProduct(event) {
-  //  Get index
-  // let  index = event.target.parentElement.parentElement.dataset.index;
-  // console.log(customerProducts[index])
-  // Remove product
   let removeData=document.querySelector(".store-customer-product")
-  console.log(removeData)
+  let totalPrice = document.querySelector("#total")
+  // console.log(moveProduct)
   removeData.remove()
-  for(let customerProduct of customerProducts){
-  
-           //count total prices//---------------
-           totalOfPriceProduct -=parseInt(customerProduct.price)
-           ///show total price//---
-           totalPrice.textContent=totalOfPriceProduct
-  
-    
-
-  }
+  let index = event.target.parentElement.parentElement.dataset.index;
+  let moveProduct=customerProducts[index]
+  removeList.push(moveProduct)
+  console.log(removeList)
  
-};
-//call funtion//----
+
+  totalOfPriceProduct -= moveProduct.price
+  totalPrice.textContent=totalOfPriceProduct
+  
+}
+  
+
+
+
+// } 
 renderCustomerProduct();
-
-  
-  
-
+//call funtion//----
