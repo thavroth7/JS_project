@@ -3,7 +3,35 @@ const dom_view_product = document.querySelector("#product-dialog");
 const dom_store_product=document.querySelector("#store-products")
 const show_box_contain_cart=document.querySelector("#dialog-box")
 
-let allProducts = JSON.parse(localStorage.getItem("allProducts"));
+let allProducts=[{
+  "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/product-image-1467786798_360x.jpg?v=1596432994",
+  "name":"BTS lightstick",
+  "price":"50",
+  "currency":"$",
+  "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. ",
+  "type":"BLACKPINK"
+
+},
+{
+  "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/product-image-1467786798_360x.jpg?v=1596432994",
+  "name":"BTS lightstick",
+  "price":"50",
+  "currency":"$",
+  "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. ",
+  "type":"BLACKPINK"
+
+},
+{
+  "img":"https://cdn.shopify.com/s/files/1/0325/4101/6201/products/product-image-1467786798_360x.jpg?v=1596432994",
+  "name":"BTS lightstick",
+  "price":"50",
+  "currency":"$",
+  "description":"It's not just about the unique style that caught your eye (and the fact you’ll never find it in a USA department store). This BTS Permission To Dance Zip-Up Hoodie is made of super-soft and ultra-comfortable material. ",
+  "type":"BTS"
+
+},
+]
+
 // FUNCTIONS ---------------------------------------------------------
 //HIDE ELEMENT---------------------
 function hide(element) {
@@ -40,6 +68,7 @@ function renderProducts() {
 
   // loop for create product cart
   for (let index = 0; index < allProducts.length; index++) {
+    console.log(allProducts.length)
 
     // xxxx
     let product = allProducts[index];
